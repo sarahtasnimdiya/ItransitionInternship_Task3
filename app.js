@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+function gcd(a, b) {
+  while (b) [a, b] = [b, a % b];
+  return a;
+}
+
 app.get('/sarahtasnim99_gmail_com', (req, res) => {
 
     let x = Number(req.query.x);
@@ -11,9 +16,10 @@ app.get('/sarahtasnim99_gmail_com', (req, res) => {
         return res.type('text').send('NaN');
     } 
     
-    const gcd = (x, y) => y === 0 ? x : gcd(y, x % y);
-    const lcm = (x * y) / gcd(x, y);
+    const lcm = x / gcd(x, y) * y;
     res.type('text').send(String(lcm));
 });
 
-app.listen(port, () => console.log('Server running'));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
