@@ -21,7 +21,7 @@ app.get('/sarahtasnim99_gmail_com', (req, res) => {
         return res.type('text').send('NaN');
     }
     const lcm = a / gcd(a, b) * b;
-    res.type('text').send(lcm);
+    res.type('text').send(String(lcm));
 });
 
 app.listen(PORT, () => {
