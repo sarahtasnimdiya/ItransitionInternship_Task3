@@ -9,15 +9,14 @@ function gcd(a, b) {
 
 app.get('/sarahtasnim99_gmail_com', (req, res) => {
 
-    let x = Number(req.query.x);
-    let y = Number(req.query.y);
+    const{ x, y } = req.query;
     
-    if(!Number.isInteger(x) || !Number.isInteger(y) || x <= 0 || y <= 0) {
+    if(!/^\d+$/.test(x) || !/^\d+$/.test(y) || x <= 0 || y <= 0) {
         return res.type('text').send('NaN');
-    } 
+    }
     
     const lcm = x / gcd(x, y) * y;
-    res.type('text').send(String(lcm));
+    res.type('text').send(lcm);
 });
 
 app.listen(PORT, () => {
