@@ -11,11 +11,16 @@ app.get('/sarahtasnim99_gmail_com', (req, res) => {
 
     const{ x, y } = req.query;
     
-    if(!/^\d+$/.test(x) || !/^\d+$/.test(y) || x <= 0 || y <= 0) {
+    if(!/^\d+$/.test(x) || !/^\d+$/.test(y)) {
         return res.type('text').send('NaN');
     }
-    
-    const lcm = x / gcd(x, y) * y;
+    const a = BigInt(x);
+    const b = BigInt(y);
+
+    if (a === 0n || b === 0n) {
+        return res.type('text').send('NaN');
+    }
+    const lcm = a / gcd(a, b) * b;
     res.type('text').send(lcm);
 });
 
